@@ -20,6 +20,10 @@ class Input(BaseModel):
 def read_root():
     return {"message": "House Price Prediction API", "endpoint": "/predict", "method": "POST"}
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
 @app.post("/predict")
 def predict(input: Input = Input()):
     pred = model.predict([input.data])
